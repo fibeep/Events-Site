@@ -29,7 +29,7 @@ def event_detail(event_id):
     """Show a single event."""
     # : Get the event with the given id and send to the template
     context = {
-        'event' : Event.query.filter_by(id=event_id).one()
+        'event' : Event.query.get(event_id)
         }
 
     return render_template('event_detail.html', **context)
@@ -39,18 +39,17 @@ def event_detail(event_id):
 def rsvp(event_id):
     """RSVP to an event."""
     # : Get the event with the given id from the database
-    event = request.form.get(event_id)
+    event = Event.query.get(event_id)
 
     is_returning_guest = request.form.get('returning')
     guest_name = request.form.get('guest_name')
 
     if is_returning_guest:
         # : Look up the guest by name, and add the event to their 
-        # events_attending, then commit to the database
-        guest = Guest.query.filter_by(name='guest_name').one()
+        # events_attending, then commit to the database2
+        guest = Guest.query.filter_by(name=guest_name).one()
         guest.events_attending.append(event)
         db.session.commit()
-        pass
     else:
         guest_email = request.form.get('email')
         guest_phone = request.form.get('phone')
@@ -60,7 +59,7 @@ def rsvp(event_id):
         guest.events_attending.append(event)
         db.session.add(guest)
         db.session.commit()
-        pass
+
     
     flash('You have successfully RSVP\'d! See you there!')
     return redirect(url_for('main.event_detail', event_id=event_id))
@@ -84,7 +83,9 @@ def create():
 
         # : Create a new event with the given title, description, & 
         # datetime, then add and commit to the database
-        new_event = Event(title=new_event_title, description=new_event_description) #maybe missing date & time?
+        # maybe missing date & time?
+        new_event = Event(
+            title=new_event_title, description=new_event_description, date_and_time=date_and_time)
         db.session.add(new_event)
         db.session.commit()
         flash('Event created.')
@@ -95,6 +96,6 @@ def create():
 
 @main.route('/guest/<guest_id>')
 def guest_detail(guest_id):
-    # TODO: Get the guest with the given id and send to the template
+    # : Get the guest with the given id and send to the template
     guest = request.form.get(guest_id)
     return render_template('guest_detail.html', guest)
