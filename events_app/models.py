@@ -13,7 +13,6 @@ class Guest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(String(80), nullable=False)
     email = db.Column(String(80), nullable=False)
-    string = db.Column(String(80), nullable=False)
     phone = db.Column(String(80), nullable=False)
     events_attending = db.relationship('Event', secondary="guest_event_table")
 
