@@ -2,7 +2,7 @@
 from events_app import db
 from sqlalchemy.orm import backref
 import datetime
-# TODO: Create a model called `Guest` with the following fields:
+# : Create a model called `Guest` with the following fields:
 # - id: primary key
 # - name: db.String column
 # - email: db.String column
@@ -16,7 +16,7 @@ class Guest(db.Model):
     phone = db.Column(db.String(80), nullable=False)
     events_attending = db.relationship('Event', secondary="guest_event")
 
-# TODO: Create a model called `Event` with the following fields:
+# : Create a model called `Event` with the following fields:
 # - id: primary key
 # - title: db.String column
 # - description: db.String column

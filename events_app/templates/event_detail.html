@@ -57,9 +57,9 @@
 
 <h2>Guests Attending:</h2>
 <ul>
-    {for guest in guests}
-    <li><a href="/guest/id">{{guest.name}}</a></li>
-    
+    {%for guest in guests%}
+         <li><a href="/guest/id">{{guest.name}}</a></li>
+    {%endfor%}
 </ul>
 
 {% endblock %}
