@@ -89,7 +89,7 @@ def create():
         db.session.add(new_event)
         db.session.commit()
         flash('Event created.')
-        return redirect(url_for('main.homepage'))
+        return redirect(url_for('main.index'))
     else:
         return render_template('create.html')
 
