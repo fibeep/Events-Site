@@ -22,14 +22,14 @@ python3 app.py
 
 To Run with Docker:
 
-1) 
+1) Build Docker Image
 ```
 docker build . -t APPNAME
 ```
 
-2) 
+2) Run Docker Image
 ```
-docker run -it -p 5001:5001 APPNAME
+docker run -p 5001:5001 --rm --name IMAGENAME APPNAME
 ```
 
-3) To access the site, go into System Preferences > Sharing, and then look for your computer's name. You can access your site at computername.local:5000. IT WILL NOT WORK WITH LOCALHOST:5000
+3) To access the site: http://localhost:5001/
