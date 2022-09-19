@@ -19,3 +19,17 @@ Then you can run the server:
 ```
 python3 app.py
 ```
+
+To Run with Docker:
+
+1) 
+```
+docker build . -t APPNAME
+```
+
+2) 
+```
+docker run -it -p 5001:5001 APPNAME
+```
+
+3) To access the site, go into System Preferences > Sharing, and then look for your computer's name. You can access your site at computername.local:5000. IT WILL NOT WORK WITH LOCALHOST:5000
