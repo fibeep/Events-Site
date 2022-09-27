@@ -5,6 +5,7 @@ ADD . /app
 WORKDIR /app
 
 RUN pip install -r requirements.txt
+RUN mv .env.example .env
 
 ENV FLASK_APP=app.py
 ENV FLASK_ENV=development
